@@ -2,10 +2,10 @@ package com.example.android.musicalstructureapp;
 
 
 /**
- * {@link MusicModel} represents the music the user wants to listen too.
+ * {@link myMusicModel} represents the music the user wants to listen too.
  * it also contains the song name , name of singer , release date and image of album
  */
-public class MusicModel {
+public class myMusicModel {
 
 
     /*
@@ -89,7 +89,7 @@ public class MusicModel {
 
 
     /**
-     * create a new MusicModel  object
+     * create a new myMusicModel  object
      *
      * @param mSongTitle     the text  that the user is already familiar with
      *                       ( such as his favorite song ).
@@ -99,7 +99,7 @@ public class MusicModel {
      * @param mAudio         the audio which will be played  and the user going to hear
      */
 
-    public MusicModel(String mSongTitle, String mSingerName, String mYearOfRelease, int mImageResource, int mAudio) {
+    public myMusicModel(String mSongTitle, String mSingerName, String mYearOfRelease, int mImageResource, int mAudio) {
         this.mSongTitle = mSongTitle;
         this.mSingerName = mSingerName;
         this.mYearOfRelease = mYearOfRelease;
@@ -108,7 +108,7 @@ public class MusicModel {
     }
 
     /**
-     * create a new MusicModel  object
+     * create a new myMusicModel  object
      *
      * @param mSongTitle  the text  that the user is already familiar with
      *                    ( such as his favorite song ).
@@ -116,7 +116,7 @@ public class MusicModel {
      * @param mAudio      the audio which will be played  and the user going to hear
      */
 
-    public MusicModel(String mSongTitle, String mSingerName, String mYearOfRelease, int mAudio) {
+    public myMusicModel(String mSongTitle, String mSingerName, String mYearOfRelease, int mAudio) {
         this.mSongTitle = mSongTitle;
         this.mSingerName = mSingerName;
         this.mYearOfRelease = mYearOfRelease;

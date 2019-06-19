@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/myGridview"
-    android:layout_column="2"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
 
-</GridView>
+    <GridView
+        android:id="@+id/myGridview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnWidth="120dp"
+        android:numColumns="2"
+        android:orientation="horizontal"
+        android:stretchMode="columnWidth"
+        tools:context=".MainActivity">
+
+
+    </GridView>
+</RelativeLayout>
