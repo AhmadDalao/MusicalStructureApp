@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="182dp"
+        android:layout_width="225dp"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
@@ -29,6 +29,8 @@
             android:layout_marginBottom="8dp"
             android:gravity="center"
             android:maxLines="1"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_large"
             tools:text="name of the song" />
 
 
@@ -40,6 +42,8 @@
             android:layout_marginBottom="8dp"
             android:gravity="center"
             android:maxLines="1"
+            android:textColor="@color/secondary_text"
+            android:textSize="@dimen/text_size_medium"
             tools:text="singer name" />
 
 
@@ -51,6 +55,8 @@
             android:layout_marginBottom="8dp"
             android:gravity="center"
             android:maxLines="1"
+            android:textColor="@color/secondary_text"
+            android:textSize="@dimen/text_size_small"
             tools:text="release year" />
 
 

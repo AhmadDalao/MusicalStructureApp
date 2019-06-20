@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
                 R.raw.color_black));
 
 
-        musicAdatper adapter = new musicAdatper(MainActivity.this, myMusicModels);
+        musicAdapter adapter = new musicAdapter(MainActivity.this, myMusicModels);
         GridView gridView = (GridView) findViewById(R.id.myGridview);
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 bundle.putInt(myConstants.getKeySendImage(), songsList.getmImageResource());
                 bundle.putInt(myConstants.getKeySendSong(), songsList.getmAudio());
                 bundle.putString(myConstants.getKeySendTitle(), songsList.getmSongTitle());
+                bundle.putString(myConstants.getKeySendSingerName() ,songsList.getmSingerName());
 
                 /** using intent to send the data to {@link playingMusic} and start new activity {@link playingMusic} */
                 Intent intent = new Intent(view.getContext(), playingMusic.class);

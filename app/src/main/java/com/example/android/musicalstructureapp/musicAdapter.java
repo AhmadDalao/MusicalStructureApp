@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class musicAdatper extends ArrayAdapter {
+public class musicAdapter extends ArrayAdapter {
 
     /**
      * This is our own custom constructor (it doesn't mirror a superclass constructor).
@@ -21,7 +21,7 @@ public class musicAdatper extends ArrayAdapter {
      * @param context   The current context. Used to inflate the layout file.
      * @param musicList A List of AndroidFlavor objects to display in a list
      */
-    public musicAdatper(Context context, ArrayList<myMusicModel> musicList) {
+    public musicAdapter(Context context, ArrayList<myMusicModel> musicList) {
         // Here, we initialize the ArrayAdapter's internal storage for the context and the list.
         // the second argument is used when the ArrayAdapter is populating a single TextView.
         // Because this is a custom adapter for two TextViews and an ImageView, the adapter is not

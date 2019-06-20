@@ -14,6 +14,11 @@ public class myConstants {
     private final static String KEY_SEND_IMAGE = "KEY_SEND_IMAGE";
     private final static String KEY_SEND_TITLE = "KEY_SEND_TITLE";
     private final static String KEY_SEND_SONG = "KEY_SEND_SONG";
+    private final static String KEY_SEND_SINGER_NAME = "KEY_SEND_SINGER_NAME";
+
+    public static String getKeySendSingerName() {
+        return KEY_SEND_SINGER_NAME;
+    }
 
     public static String getKeySendImage() {
         return KEY_SEND_IMAGE;
