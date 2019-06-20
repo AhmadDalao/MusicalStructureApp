@@ -123,6 +123,8 @@ public class myMusicModel {
         this.mAudio = mAudio;
     }
 
+
+    // setters to set the data if needed
     public void setmSongTitle(String mSongTitle) {
         this.mSongTitle = mSongTitle;
     }
