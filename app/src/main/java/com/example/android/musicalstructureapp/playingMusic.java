@@ -14,7 +14,9 @@ public class playingMusic extends AppCompatActivity {
     private TextView songTitle;
     private ImageView ImageAlbum;
     private TextView singerName;
-    private ImageView playMusic;
+    private ImageView playMusicIcon;
+    private ImageView forwardMusic;
+    private ImageView rewindMusic;
     /**
      * declaring variables to hold the data which is sent from {@link MainActivity}
      */
@@ -112,32 +114,71 @@ public class playingMusic extends AppCompatActivity {
         ImageAlbum.setImageResource(receiveImage);
 
 
-        playMusic = (ImageView) findViewById(R.id.play_arrow);
-        playMusic.setOnClickListener(new View.OnClickListener() {
+        playMusicIcon = (ImageView) findViewById(R.id.play_arrow);
+        playMusicIcon.setOnClickListener(new View.OnClickListener() {
+
+
+            // this variable will check if there is a music playing
+            private boolean playingSound = true;
+
             @Override
             public void onClick(View v) {
+                // if the music start when the button is licked on
+                // change the picture to pause
+                if (playingSound) {
+                    // set the image from playing icon to pause
+                    playMusicIcon.setImageResource(R.drawable.ic_pause_black_24dp);
+                    // once done re assign the value false to the variable to it wont stuck
+                    playingSound = false;
 
                   /*
                 release the media player if it currently exists because we are about to play
                 a different sound file
                  */
-                releaseMediaPlayer();
+                    releaseMediaPlayer();
 
-                // Create and setup the {@link MediaPlayer} for the audio resource associated
-                // with the current word
-                mediaPlayer = (MediaPlayer) MediaPlayer.create(v.getContext(), receiveMusic);
+                    // Create and setup the {@link MediaPlayer} for the audio resource associated
+                    // with the current word
+                    mediaPlayer = (MediaPlayer) MediaPlayer.create(v.getContext(), receiveMusic);
 
-                // Start the audio file
-                mediaPlayer.start();
-                // setup  a listener on media player , so that we can stop and release the
-                //media player once sound has finished
-                mediaPlayer.setOnCompletionListener(onCompletionListener);
+                    // Start the audio file
+                    mediaPlayer.start();
+                    // setup  a listener on media player , so that we can stop and release the
+                    //media player once sound has finished
+                    mediaPlayer.setOnCompletionListener(onCompletionListener);
 
+                } else {
+                    // we are at the pause right now , there is no music playing at the moment
+                    // pause the song and change the icon to play again and so on the loop will go
+                    playingSound = true;
+                    mediaPlayer.pause();
+                    playMusicIcon.setImageResource(R.drawable.ic_play_arrow_black_24dp);
+                }
+            }// end of on click
+        });// end of on click listener
+
+
+        // finding the view for the forward icon
+        forwardMusic = (ImageView) findViewById(R.id.fast_forward);
+        forwardMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mediaPlayer.seekTo(myConstants.getForwardSong());
             }
         });
 
 
-    }
+        // finding the view for the rewind icon
+        rewindMusic = (ImageView) findViewById(R.id.fast_rewind);
+        rewindMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mediaPlayer.seekTo(myConstants.getRewindSong());
+            }
+        });
+
+
+    }// end of on create
 
     @Override
     protected void onStop() {
@@ -167,4 +208,4 @@ public class playingMusic extends AppCompatActivity {
     }
 
 
-}
+}// end of playing music activity

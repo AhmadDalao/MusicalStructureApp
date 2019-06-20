@@ -64,11 +64,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="5"
-            android:max="100"
             android:background="@color/icons"
+            android:max="100"
             android:paddingLeft="4dp"
-            android:paddingRight="4dp"
-            />
+            android:paddingRight="4dp" />
 
         <TextView
             android:id="@+id/where_song_end"
