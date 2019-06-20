@@ -84,7 +84,7 @@ public class musicAdapter extends ArrayAdapter {
             // set the image to image_album
             image_album.setImageResource(music.getmImageResource());
         } else {
-            // if the GrideView has no image provide one for it by setting the setmImageResource
+            // if the GridView has no image provide one for it by setting the setmImageResource
             music.setmImageResource(R.drawable.ic_music);
             // if there is no image set the image of the song_layout_list to the following
             image_album.setImageResource(R.drawable.ic_music);

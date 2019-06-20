@@ -69,7 +69,6 @@
             android:paddingRight="4dp"
             android:progress="20" />
 
-
         <TextView
             android:id="@+id/where_song_end"
             android:layout_width="0dp"
@@ -81,8 +80,41 @@
             android:textColor="@color/primary_text"
             android:textSize="@dimen/text_size_small" />
 
-
     </LinearLayout>
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="32dp">
+
+
+        <ImageView
+            android:id="@+id/fast_rewind"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleType="center"
+            android:src="@drawable/ic_fast_rewind_black_24dp" />
+
+
+        <ImageView
+            android:id="@+id/play_arrow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleType="center"
+            android:src="@drawable/ic_play_arrow_black_24dp" />
+
+        <ImageView
+            android:id="@+id/fast_forward"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleType="center"
+            android:src="@drawable/ic_fast_forward_black_24dp" />
+
+    </LinearLayout>
 
 </LinearLayout>
