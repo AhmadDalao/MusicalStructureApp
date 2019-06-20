@@ -12,6 +12,7 @@
         android:layout_height="match_parent"
         android:columnWidth="120dp"
         android:numColumns="2"
+        android:fitsSystemWindows="true"
         android:orientation="horizontal"
         android:stretchMode="columnWidth"
         tools:context=".MainActivity">
