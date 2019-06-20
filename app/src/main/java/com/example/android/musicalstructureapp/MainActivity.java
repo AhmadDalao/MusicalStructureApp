@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 // put the data inside the bundle which will be send to new activity
                 // using intent
-                bundle.putInt(myConstants.getKeySendImage(), songsList.getmImageResource());
+                bundle.putInt(myConstants.getKeySendImage(), songsList.getmImageResource());//ToDo there is null error here try to fix it
                 bundle.putInt(myConstants.getKeySendSong(), songsList.getmAudio());
                 bundle.putString(myConstants.getKeySendTitle(), songsList.getmSongTitle());
                 bundle.putString(myConstants.getKeySendSingerName() ,songsList.getmSingerName());

@@ -1,7 +1,6 @@
 package com.example.android.musicalstructureapp;
 
 import android.content.Context;
-import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,27 +55,44 @@ public class musicAdapter extends ArrayAdapter {
          *
          */
 
-        myMusicModel word = (myMusicModel) getItem(position);
+        myMusicModel music = (myMusicModel) getItem(position);
 
-
+        // Find the TextView in the song_layout_list.xml layout with the ID title_of_song
         TextView nameOfSong = (TextView) listOfSongs.findViewById(R.id.title_of_song);
-        nameOfSong.setText(word.getmSongTitle());
+        // Get the version name from the current myMusicModel object : music
+        // set this text on the nameOfSong TextView
+        nameOfSong.setText(music.getmSongTitle());
 
+        // Find the TextView in the song_layout_list.xml layout with the ID singer_name
         TextView singerName = (TextView) listOfSongs.findViewById(R.id.singer_name);
-        singerName.setText(word.getmSingerName());
+        // Get the version name from the current myMusicModel object : music
+        // set this text on the singerName TextView
+        singerName.setText(music.getmSingerName());
 
-        TextView rebaseYear = (TextView) listOfSongs.findViewById(R.id.releaseYear);
-        rebaseYear.setText(word.getmYearOfRelease());
+        // Find the TextView in the song_layout_list.xml layout with the ID releaseYear
+        TextView releaseYear = (TextView) listOfSongs.findViewById(R.id.releaseYear);
+        // Get the version name from the current myMusicModel object : music
+        // set this text on the releaseYear TextView
+        releaseYear.setText(music.getmYearOfRelease());
 
+        // Find the TextView in the song_layout_list.xml layout with the ID imageView
         ImageView image_album = (ImageView) listOfSongs.findViewById(R.id.imageView);
 
-        if (word.hasImage()) {
-            image_album.setImageResource(word.getmImageResource());
+        if (music.hasImage()) {
+            image_album.setVisibility(View.VISIBLE);
+            // Get the image resource ID from the current myMusicModel object : music
+            // set the image to image_album
+            image_album.setImageResource(music.getmImageResource());
         } else {
+            // if the GrideView has no image provide one for it by setting the setmImageResource
+            music.setmImageResource(R.drawable.ic_music);
+            // if there is no image set the image of the song_layout_list to the following
             image_album.setImageResource(R.drawable.ic_music);
         }
 
-
+        // Return the whole list item layout (containing 3 TextViews and an ImageView)
+        // so that it can be shown in the GridView
         return listOfSongs;
+
     }
 }
