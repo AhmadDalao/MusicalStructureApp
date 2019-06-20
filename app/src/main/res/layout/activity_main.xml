@@ -10,11 +10,13 @@
         android:id="@+id/myGridview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:columnWidth="120dp"
-        android:numColumns="2"
         android:fitsSystemWindows="true"
+        android:gravity="center"
+        android:horizontalSpacing="10dp"
+        android:numColumns="2"
         android:orientation="horizontal"
         android:stretchMode="columnWidth"
+        android:verticalSpacing="8dp"
         tools:context=".MainActivity">
 
 
