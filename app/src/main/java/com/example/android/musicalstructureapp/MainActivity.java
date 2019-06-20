@@ -21,16 +21,22 @@ public class MainActivity extends AppCompatActivity {
  which contains the array of words defined at {@link myMusicModel}
  */
         final ArrayList<myMusicModel> myMusicModels = new ArrayList<>();
-        myMusicModels.add(new myMusicModel("test", "test ", "2019",
-                R.drawable.ic_animal, R.raw.color_black));
-        myMusicModels.add(new myMusicModel("test", "test ", "2019",
-                R.drawable.ic_animal, R.raw.color_black));
-        myMusicModels.add(new myMusicModel("test", "test ", "2019",
-                R.drawable.ic_animal, R.raw.color_black));
-        myMusicModels.add(new myMusicModel("test", "test ", "2019",
-                R.raw.color_black));
-        myMusicModels.add(new myMusicModel("test", "test ", "2019",
-                R.raw.color_black));
+        myMusicModels.add(new myMusicModel(getString(R.string.careless_whisper),
+                getString(R.string.george_michael_wham), getString(R.string.careless_whisper_date),
+                R.drawable.george_michael_4, R.raw.george_michael_wham_careless_whisper));
+
+        myMusicModels.add(new myMusicModel(getString(R.string.onlyYou), getString(R.string.joe_dolan),
+                getString(R.string.onlyYou_date), R.drawable.joe_dolan, R.raw.only_you));
+
+        myMusicModels.add(new myMusicModel(getString(R.string.eminem_rock), getString(R.string.eminem),
+                getString(R.string.eminem_rock_date), R.drawable.eminem, R.raw.eminem_rock_bottom));
+
+
+        myMusicModels.add(new myMusicModel(getString(R.string.when_am_gone), getString(R.string.eminem),
+                getString(R.string.eminem_gone_date), R.raw.eminem_when_am_gone));
+
+        myMusicModels.add(new myMusicModel(getString(R.string.no_apologies),
+                getString(R.string.eminem), getString(R.string.no_apologies_date),  R.raw.eminem_no_apoligies));
 
         /** Create an {@link musicAdapter}, whose data source is a list of
          *

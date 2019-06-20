@@ -2,4 +2,27 @@
     <string name="app_name">MusicalStructureApp</string>
     <string name="_00_00">00:00</string>
     <string name="_6_65">6:65</string>
+
+    <!-- singer name -->
+    <string name="george_michael_wham">George Michael</string>
+    <string name="joe_dolan">Joe Dolan</string>
+    <string name="eminem">Eminem</string>
+
+
+    <!-- song name -->
+    <string name="careless_whisper">Careless Whisper</string>
+    <string name="onlyYou">Only You</string>
+    <string name="eminem_rock">Rock Buttom</string>
+    <string name="when_am_gone">When i\'m Gone</string>
+    <string name="no_apologies">no apologies</string>
+
+
+    <!-- date of release -->
+    <string name="careless_whisper_date">1984</string>
+    <string name="onlyYou_date">1981</string>
+    <string name="eminem_rock_date">2015</string>
+    <string name="eminem_gone_date">2005</string>
+    <string name="no_apologies_date">2006</string>
+
+
 </resources>
