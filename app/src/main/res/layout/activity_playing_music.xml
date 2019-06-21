@@ -65,7 +65,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="5"
             android:background="@color/icons"
-            android:max="100"
             android:paddingLeft="4dp"
             android:paddingRight="4dp" />
 
