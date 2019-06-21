@@ -17,6 +17,7 @@ public class playingMusic extends AppCompatActivity {
     private ImageView playMusicIcon;
     private ImageView forwardMusic;
     private ImageView rewindMusic;
+    private TextView songDurationTime;
     /**
      * declaring variables to hold the data which is sent from {@link MainActivity}
      */
@@ -113,13 +114,15 @@ public class playingMusic extends AppCompatActivity {
         //setting the album image to the image received
         ImageAlbum.setImageResource(receiveImage);
 
-
+        //finding the view
         playMusicIcon = (ImageView) findViewById(R.id.play_arrow);
+        //attach on click listener
         playMusicIcon.setOnClickListener(new View.OnClickListener() {
-
 
             // this variable will check if there is a music playing
             private boolean playingSound = true;
+            // to save the song once the pause icon is clicked on
+            int currentSongPosition;
 
             @Override
             public void onClick(View v) {
@@ -143,6 +146,7 @@ public class playingMusic extends AppCompatActivity {
 
                     // Start the audio file
                     mediaPlayer.start();
+                    mediaPlayer.seekTo(currentSongPosition);
                     // setup  a listener on media player , so that we can stop and release the
                     //media player once sound has finished
                     mediaPlayer.setOnCompletionListener(onCompletionListener);
@@ -153,6 +157,11 @@ public class playingMusic extends AppCompatActivity {
                     playingSound = true;
                     mediaPlayer.pause();
                     playMusicIcon.setImageResource(R.drawable.ic_play_arrow_black_24dp);
+                    // save the current position of the song
+                    // which i will be calling above under  mediaPlayer.start();
+                    //once the audio play again it will go to the last position it was at
+                    currentSongPosition = mediaPlayer.getCurrentPosition();
+
                 }
             }// end of on click
         });// end of on click listener
@@ -160,22 +169,58 @@ public class playingMusic extends AppCompatActivity {
 
         // finding the view for the forward icon
         forwardMusic = (ImageView) findViewById(R.id.fast_forward);
+        //attach on click listener
         forwardMusic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaPlayer.seekTo(myConstants.getForwardSong());
+                // get current song position
+                int currentSongPosition = mediaPlayer.getCurrentPosition();
+                // check if seekForward time is lesser than song duration
+                if (currentSongPosition + myConstants.getForwardSong() <= mediaPlayer.getDuration()) {
+                    // forward the song if so
+                    mediaPlayer.seekTo(currentSongPosition + myConstants.getForwardSong());
+                } else {
+                    // forward to end position
+                    mediaPlayer.seekTo(mediaPlayer.getDuration());
+                }
+
             }
         });
 
 
         // finding the view for the rewind icon
         rewindMusic = (ImageView) findViewById(R.id.fast_rewind);
+        //attach on click listener
         rewindMusic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaPlayer.seekTo(myConstants.getRewindSong());
+                // get current song position
+                int currentSongPosition = mediaPlayer.getCurrentPosition();
+                // check if seekBackward time is greater than 0 sec
+                if (currentSongPosition - myConstants.getRewindSong() >= 0) {
+                    // rewind the song if so
+                    mediaPlayer.seekTo(currentSongPosition - myConstants.getRewindSong());
+                } else {
+                    // backward to starting position
+                    mediaPlayer.seekTo(0);
+                }
             }
+
         });
+
+
+        // finding the view
+        songDurationTime = (TextView) findViewById(R.id.song_duration);
+        // setting the song duration
+        //ToDo problem try to fix it xD
+//
+//        //convert the song duration into string reading hours, mins seconds
+//        int dur = (int) Integer.parseInt(String.valueOf(receiveMusic));
+//
+//        int mns = (dur / 60000) % 60000;
+//        int scs = dur % 60000 / 1000;
+//
+//        String songTimefinal = String.format("%02d:%02d",  mns, scs);
 
 
     }// end of on create

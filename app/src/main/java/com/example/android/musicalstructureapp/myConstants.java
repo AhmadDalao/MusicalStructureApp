@@ -15,8 +15,8 @@ public class myConstants {
     private final static String KEY_SEND_TITLE = "KEY_SEND_TITLE";
     private final static String KEY_SEND_SONG = "KEY_SEND_SONG";
     private final static String KEY_SEND_SINGER_NAME = "KEY_SEND_SINGER_NAME";
-    private final static int FORWARD_SONG = 7000; // 5000 millisecond
-    private final static int REWIND_SONG = -7000;// 5000 millisecond
+    private final static int FORWARD_SONG = 5000; // 5000 millisecond
+    private final static int REWIND_SONG = 5000;// 5000 millisecond
 
 
     public static String getKeySendSingerName() {
