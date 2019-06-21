@@ -4,9 +4,11 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class playingMusic extends AppCompatActivity {
@@ -18,6 +20,13 @@ public class playingMusic extends AppCompatActivity {
     private ImageView forwardMusic;
     private ImageView rewindMusic;
     private TextView songDurationTime;
+    private SeekBar mSeekBar;
+
+
+    private Runnable runnable;
+    private Handler handler;
+
+
     /**
      * declaring variables to hold the data which is sent from {@link MainActivity}
      */
@@ -114,6 +123,29 @@ public class playingMusic extends AppCompatActivity {
         //setting the album image to the image received
         ImageAlbum.setImageResource(receiveImage);
 
+        mSeekBar = (SeekBar) findViewById(R.id.seek_bar);
+        mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (fromUser) {
+                    seekBar.setMax(mediaPlayer.getDuration());
+                    seekBar.setProgress(mediaPlayer.getCurrentPosition());
+                    mediaPlayer.seekTo(progress);
+                }
+            }
+
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
         //finding the view
         playMusicIcon = (ImageView) findViewById(R.id.play_arrow);
         //attach on click listener
@@ -142,7 +174,7 @@ public class playingMusic extends AppCompatActivity {
 
                     // Create and setup the {@link MediaPlayer} for the audio resource associated
                     // with the current word
-                    mediaPlayer = (MediaPlayer) MediaPlayer.create(v.getContext(), receiveMusic);
+                    mediaPlayer = (MediaPlayer) MediaPlayer.create(getApplicationContext(), receiveMusic);
 
                     // Start the audio file
                     mediaPlayer.start();
@@ -224,6 +256,10 @@ public class playingMusic extends AppCompatActivity {
 
 
     }// end of on create
+
+
+
+
 
     @Override
     protected void onStop() {
