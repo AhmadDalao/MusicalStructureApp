@@ -85,9 +85,9 @@ public class musicAdapter extends ArrayAdapter {
             image_album.setImageResource(music.getmImageResource());
         } else {
             // if the GridView has no image provide one for it by setting the setmImageResource
-            music.setmImageResource(R.drawable.note_symbol);
+            music.setmImageResource(R.drawable.music_player);
             // if there is no image set the image of the song_layout_list to the following
-            image_album.setImageResource(R.drawable.note_symbol);
+            image_album.setImageResource(R.drawable.music_player);
         }
 
         // Return the whole list item layout (containing 3 TextViews and an ImageView)
