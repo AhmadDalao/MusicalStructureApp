@@ -139,27 +139,6 @@ public class playingMusic extends AppCompatActivity {
         mSeekBar = (SeekBar) findViewById(R.id.seek_bar);
 
 
-//        // need a thread to update the seekbar
-//
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                while (mediaPlayer != null) {
-//                    try {
-//                        Message message = new Message();
-//                        message.what = mediaPlayer.getCurrentPosition();
-//                        handler.sendMessage(message);
-//                        Thread.sleep(1000);
-//                    } catch (InterruptedException e) {
-//
-//                    }
-//
-//
-//                }
-//            }
-//        });
-
-
         //finding the view
         playMusicIcon = (ImageView) findViewById(R.id.play_arrow);
         //attach on click listener
