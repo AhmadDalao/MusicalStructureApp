@@ -1,10 +1,12 @@
 package com.example.android.musicalstructureapp;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,10 +23,12 @@ public class playingMusic extends AppCompatActivity {
     private ImageView rewindMusic;
     private TextView songDurationTime;
     private SeekBar mSeekBar;
+    private TextView startingTime;
 
+    int totalTime;
 
-    private Runnable runnable;
-    private Handler handler;
+    //    private Runnable runnable;
+//    private Handler handler;
 
 
     /**
@@ -47,7 +51,9 @@ public class playingMusic extends AppCompatActivity {
     MediaPlayer.OnCompletionListener onCompletionListener = new MediaPlayer.OnCompletionListener() {
         @Override
         public void onCompletion(MediaPlayer mp) {
-            releaseMediaPlayer();
+            //   mediaPlayer.setLooping(true);
+            playMusicIcon.setImageResource(R.drawable.ic_play_arrow_black_24dp);
+            // releaseMediaPlayer();
         }
     };
 
@@ -123,28 +129,36 @@ public class playingMusic extends AppCompatActivity {
         //setting the album image to the image received
         ImageAlbum.setImageResource(receiveImage);
 
+        // finding the view
+        startingTime = (TextView) findViewById(R.id.where_song_start);
+
+        // finding the view
+        songDurationTime = (TextView) findViewById(R.id.song_duration);
+
+
         mSeekBar = (SeekBar) findViewById(R.id.seek_bar);
-        mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser) {
-                    seekBar.setMax(mediaPlayer.getDuration());
-                    seekBar.setProgress(mediaPlayer.getCurrentPosition());
-                    mediaPlayer.seekTo(progress);
-                }
-            }
 
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
+//        // need a thread to update the seekbar
+//
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                while (mediaPlayer != null) {
+//                    try {
+//                        Message message = new Message();
+//                        message.what = mediaPlayer.getCurrentPosition();
+//                        handler.sendMessage(message);
+//                        Thread.sleep(1000);
+//                    } catch (InterruptedException e) {
+//
+//                    }
+//
+//
+//                }
+//            }
+//        });
 
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
 
         //finding the view
         playMusicIcon = (ImageView) findViewById(R.id.play_arrow);
@@ -174,13 +188,63 @@ public class playingMusic extends AppCompatActivity {
 
                     // Create and setup the {@link MediaPlayer} for the audio resource associated
                     // with the current word
-                    mediaPlayer = (MediaPlayer) MediaPlayer.create(getApplicationContext(), receiveMusic);
+                    mediaPlayer = (MediaPlayer) MediaPlayer.create(playingMusic.this, receiveMusic);
+
+
+                    totalTime = mediaPlayer.getDuration(); // ToDo there is bug
+                    mSeekBar.setMax(totalTime);
+                    mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                        @Override
+                        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                            if (fromUser) {
+                                mediaPlayer.seekTo(progress);
+                                mSeekBar.setProgress(progress);
+                            }
+                        }
+
+
+                        @Override
+                        public void onStartTrackingTouch(SeekBar seekBar) {
+
+                        }
+
+                        @Override
+                        public void onStopTrackingTouch(SeekBar seekBar) {
+
+                        }
+                    });
+
+                    // need a thread to update the seekbar
+
+
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            while (mediaPlayer != null) {
+                                try {
+//                        Log.i("Thread ", "Thread Called");
+                                    // create new message to send to handler
+                                    if (mediaPlayer.isPlaying()) {
+                                        Message msg = new Message();
+                                        msg.what = mediaPlayer.getCurrentPosition();
+                                        handler.sendMessage(msg);
+                                        Thread.sleep(1000);
+                                    }
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                    }).start();
+
 
                     // Start the audio file
                     mediaPlayer.start();
                     mediaPlayer.seekTo(currentSongPosition);
                     // setup  a listener on media player , so that we can stop and release the
                     //media player once sound has finished
+                    mSeekBar.setProgress(currentSongPosition);
+
                     mediaPlayer.setOnCompletionListener(onCompletionListener);
 
                 } else {
@@ -211,6 +275,7 @@ public class playingMusic extends AppCompatActivity {
                 if (currentSongPosition + myConstants.getForwardSong() <= mediaPlayer.getDuration()) {
                     // forward the song if so
                     mediaPlayer.seekTo(currentSongPosition + myConstants.getForwardSong());
+                    mSeekBar.setProgress(currentSongPosition + myConstants.getForwardSong()); // new addition
                 } else {
                     // forward to end position
                     mediaPlayer.seekTo(mediaPlayer.getDuration());
@@ -232,8 +297,10 @@ public class playingMusic extends AppCompatActivity {
                 if (currentSongPosition - myConstants.getRewindSong() >= 0) {
                     // rewind the song if so
                     mediaPlayer.seekTo(currentSongPosition - myConstants.getRewindSong());
+                    mSeekBar.setProgress(currentSongPosition - myConstants.getRewindSong()); // new addition it works fine
+
                 } else {
-                    // backward to starting position
+                    // backward to starting position it works fine
                     mediaPlayer.seekTo(0);
                 }
             }
@@ -241,24 +308,37 @@ public class playingMusic extends AppCompatActivity {
         });
 
 
-        // finding the view
-        songDurationTime = (TextView) findViewById(R.id.song_duration);
-        // setting the song duration
-        //ToDo problem try to fix it xD
-//
-//        //convert the song duration into string reading hours, mins seconds
-//        int dur = (int) Integer.parseInt(String.valueOf(receiveMusic));
-//
-//        int mns = (dur / 60000) % 60000;
-//        int scs = dur % 60000 / 1000;
-//
-//        String songTimefinal = String.format("%02d:%02d",  mns, scs);
-
-
     }// end of on create
 
 
+    @SuppressLint("HandlerLeak")
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+//            Log.i("handler ", "handler called");
+            int current_position = msg.what;
+            mSeekBar.setProgress(current_position);
+            String cTime = createTimeLabel(current_position);
+            startingTime.setText(cTime);
+            String remaningTime = createTimeLabel(totalTime - current_position);
+            songDurationTime.setText(remaningTime);
+        }
+    };
 
+
+    public String createTimeLabel(int duration) {
+        String timeLabel = "";
+        int min = duration / 1000 / 60;
+        int sec = duration / 1000 % 60;
+
+        timeLabel += min + ":";
+        if (sec < 10) timeLabel += "0";
+        timeLabel += sec;
+
+        return timeLabel;
+
+
+    }
 
 
     @Override
