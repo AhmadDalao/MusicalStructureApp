@@ -20,7 +20,7 @@
 
         </activity>
         <activity android:name=".MainActivity"
-            android:label="My music">
+            android:label="Musical Structure App">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
