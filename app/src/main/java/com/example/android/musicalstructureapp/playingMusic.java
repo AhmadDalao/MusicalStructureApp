@@ -24,7 +24,8 @@ public class playingMusic extends AppCompatActivity {
     private TextView songDurationTime;
     private SeekBar mSeekBar;
     private TextView startingTime;
-
+    private String currentTime;
+    private String remaningTime;
     int totalTime;
 
     //    private Runnable runnable;
@@ -131,10 +132,11 @@ public class playingMusic extends AppCompatActivity {
 
         // finding the view
         startingTime = (TextView) findViewById(R.id.where_song_start);
+        startingTime.setText(currentTime);
 
         // finding the view
         songDurationTime = (TextView) findViewById(R.id.song_duration);
-
+        songDurationTime.setText(remaningTime);
 
         mSeekBar = (SeekBar) findViewById(R.id.seek_bar);
 
@@ -213,6 +215,7 @@ public class playingMusic extends AppCompatActivity {
                                     e.printStackTrace();
                                 }
                             }
+                            releaseMediaPlayer();// added this to fix the crush it works xD
                         }
                     }).start();
 
@@ -297,9 +300,9 @@ public class playingMusic extends AppCompatActivity {
 //            Log.i("handler ", "handler called");
             int current_position = msg.what;
             mSeekBar.setProgress(current_position);
-            String cTime = createTimeLabel(current_position);
-            startingTime.setText(cTime);
-            String remaningTime = createTimeLabel(totalTime - current_position);
+            currentTime = createTimeLabel(current_position);
+            startingTime.setText(currentTime);
+            remaningTime = createTimeLabel(totalTime - current_position);
             songDurationTime.setText(remaningTime);
         }
     };

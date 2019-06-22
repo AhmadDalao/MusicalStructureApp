@@ -55,9 +55,9 @@
             android:layout_weight="1"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:text="@string/_00_00"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_size_small" />
+            android:textSize="@dimen/text_size_small"
+            tools:text="@string/_00_00" />
 
         <SeekBar
             android:id="@+id/seek_bar"
@@ -65,7 +65,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="5"
             android:paddingLeft="4dp"
-
             android:paddingRight="4dp" />
 
         <TextView
@@ -75,9 +74,9 @@
             android:layout_weight="1"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:text="@string/_6_65"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_size_small" />
+            android:textSize="@dimen/text_size_small"
+            tools:text="@string/_6_65" />
 
     </LinearLayout>
 
