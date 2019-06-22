@@ -57,7 +57,7 @@
             android:paddingRight="8dp"
             android:textColor="@color/primary_text"
             android:textSize="@dimen/text_size_small"
-            tools:text="@string/_00_00" />
+            android:text="@string/_00_00" />
 
         <SeekBar
             android:id="@+id/seek_bar"
@@ -76,7 +76,7 @@
             android:paddingRight="8dp"
             android:textColor="@color/primary_text"
             android:textSize="@dimen/text_size_small"
-            tools:text="@string/_6_65" />
+            android:text="@string/_00_00" />
 
     </LinearLayout>
 

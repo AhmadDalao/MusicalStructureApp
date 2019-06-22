@@ -54,7 +54,13 @@ public class playingMusic extends AppCompatActivity {
         public void onCompletion(MediaPlayer mp) {
             //   mediaPlayer.setLooping(true);
             playMusicIcon.setImageResource(R.drawable.ic_play_arrow_black_24dp);
-            // releaseMediaPlayer();
+            if (! mediaPlayer.isPlaying()) {
+                mediaPlayer.seekTo(0);
+                mSeekBar.setProgress(0);
+
+
+            }
+            //  releaseMediaPlayer();
         }
     };
 
@@ -132,11 +138,9 @@ public class playingMusic extends AppCompatActivity {
 
         // finding the view
         startingTime = (TextView) findViewById(R.id.where_song_start);
-        startingTime.setText(currentTime);
 
         // finding the view
         songDurationTime = (TextView) findViewById(R.id.song_duration);
-        songDurationTime.setText(remaningTime);
 
         mSeekBar = (SeekBar) findViewById(R.id.seek_bar);
 
@@ -172,6 +176,14 @@ public class playingMusic extends AppCompatActivity {
                     mediaPlayer = (MediaPlayer) MediaPlayer.create(playingMusic.this, receiveMusic);
 
 
+                    // Start the audio file
+                    mediaPlayer.start();
+                    mediaPlayer.seekTo(currentSongPosition);
+                    // setup  a listener on media player , so that we can stop and release the
+                    //media player once sound has finished
+                    mSeekBar.setProgress(currentSongPosition);
+
+
                     totalTime = mediaPlayer.getDuration(); // ToDo there is bug
                     mSeekBar.setMax(totalTime);
                     mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -205,7 +217,7 @@ public class playingMusic extends AppCompatActivity {
                                 try {
 //                        Log.i("Thread ", "Thread Called");
                                     // create new message to send to handler
-                                    if (mediaPlayer.isPlaying()) {
+                                    if (mediaPlayer.isPlaying()) {//Todo there is a bug here
                                         Message msg = new Message();
                                         msg.what = mediaPlayer.getCurrentPosition();
                                         handler.sendMessage(msg);
@@ -220,13 +232,6 @@ public class playingMusic extends AppCompatActivity {
                     }).start();
 
 
-                    // Start the audio file
-                    mediaPlayer.start();
-                    mediaPlayer.seekTo(currentSongPosition);
-                    // setup  a listener on media player , so that we can stop and release the
-                    //media player once sound has finished
-                    mSeekBar.setProgress(currentSongPosition);
-
                     mediaPlayer.setOnCompletionListener(onCompletionListener);
 
                 } else {
@@ -239,6 +244,7 @@ public class playingMusic extends AppCompatActivity {
                     // which i will be calling above under  mediaPlayer.start();
                     //once the audio play again it will go to the last position it was at
                     currentSongPosition = mediaPlayer.getCurrentPosition();
+                    mSeekBar.setProgress(currentSongPosition);
 
                 }
             }// end of on click
