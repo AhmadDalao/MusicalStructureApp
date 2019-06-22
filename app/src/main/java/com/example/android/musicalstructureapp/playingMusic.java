@@ -144,6 +144,7 @@ public class playingMusic extends AppCompatActivity {
 
         mSeekBar = (SeekBar) findViewById(R.id.seek_bar);
 
+        releaseMediaPlayer();
 
         //finding the view
         playMusicIcon = (ImageView) findViewById(R.id.play_arrow);
@@ -169,7 +170,6 @@ public class playingMusic extends AppCompatActivity {
                 release the media player if it currently exists because we are about to play
                 a different sound file
                  */
-                    releaseMediaPlayer();
 
                     // Create and setup the {@link MediaPlayer} for the audio resource associated
                     // with the current word
