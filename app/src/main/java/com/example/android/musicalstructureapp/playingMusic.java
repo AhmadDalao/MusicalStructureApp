@@ -217,7 +217,7 @@ public class playingMusic extends AppCompatActivity {
                                 try {
 //                        Log.i("Thread ", "Thread Called");
                                     // create new message to send to handler
-                                    if (mediaPlayer.isPlaying()) {//Todo there is a bug here
+                                    if (mediaPlayer.isPlaying()) {
                                         Message msg = new Message();
                                         msg.what = mediaPlayer.getCurrentPosition();
                                         handler.sendMessage(msg);
