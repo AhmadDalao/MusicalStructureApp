@@ -36,7 +36,9 @@ public class MainActivity extends AppCompatActivity {
                 getString(R.string.eminem_gone_date), R.raw.eminem_when_am_gone));
 
         myMusicModels.add(new myMusicModel(getString(R.string.no_apologies),
-                getString(R.string.eminem), getString(R.string.no_apologies_date),  R.raw.eminem_no_apoligies));
+                getString(R.string.eminem), getString(R.string.no_apologies_date), R.raw.eminem_no_apoligies));
+
+
 
         /** Create an {@link musicAdapter}, whose data source is a list of
          *

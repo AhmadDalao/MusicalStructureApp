@@ -184,7 +184,7 @@ public class playingMusic extends AppCompatActivity {
                     mSeekBar.setProgress(currentSongPosition);
 
 
-                    totalTime = mediaPlayer.getDuration(); // ToDo there is bug
+                    totalTime = mediaPlayer.getDuration();
                     mSeekBar.setMax(totalTime);
                     mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                         @Override

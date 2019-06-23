@@ -90,6 +90,8 @@ public class musicAdapter extends ArrayAdapter {
             image_album.setImageResource(R.drawable.music_player);
         }
 
+
+
         // Return the whole list item layout (containing 3 TextViews and an ImageView)
         // so that it can be shown in the GridView
         return listOfSongs;
