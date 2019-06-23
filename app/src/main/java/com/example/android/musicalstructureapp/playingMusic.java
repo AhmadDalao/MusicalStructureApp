@@ -227,7 +227,6 @@ public class playingMusic extends AppCompatActivity {
                                     e.printStackTrace();
                                 }
                             }
-                            releaseMediaPlayer();// added this to fix the crush it works xD
                         }
                     }).start();
 
