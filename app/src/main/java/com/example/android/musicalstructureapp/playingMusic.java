@@ -221,7 +221,8 @@ public class playingMusic extends AppCompatActivity {
                                         Message msg = new Message();
                                         msg.what = mediaPlayer.getCurrentPosition();
                                         handler.sendMessage(msg);
-                                        Thread.sleep(1000);
+                                        // makes the seekbar moves faster the lower the number the faster
+                                        Thread.sleep(500);
                                     }
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
