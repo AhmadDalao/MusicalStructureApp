@@ -14,6 +14,7 @@ This sample uses the Gradle build system. To build this project, use the "gradle
 
 <br>
 <br>
+
 ![alt text](https://raw.githubusercontent.com/AhmadDalao/MusicalStructureApp/master/app/src/main/res/drawable/project2.png)
 
 
